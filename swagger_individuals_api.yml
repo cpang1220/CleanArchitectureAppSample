@@ -1,0 +1,89 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Individuals API"
+tags:
+- name: "individuals"
+  description: ""
+schemes:
+- "https"
+- "http"
+paths:
+  /api/individuals:
+    get:
+      tags:
+      - "individuals"
+      description: "Returns all enrolled external students"
+      operationId: "get"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Student"
+        "404":
+          description: "No Jedi Students found"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Student_Error"
+    post:
+      tags:
+      - "individuals"
+      description: "Add a student record to the students memory database for enrollment"
+      operationId: "createStudent"
+      parameters:
+        - name: student 
+          in: body
+          description: The student JSON to post
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Student"
+          required: true
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Student"
+        "500":
+          description: "error"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Student_Error"
+definitions:
+  Student:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int32"
+      name:
+        type: "string"
+      height:
+        type: "string"
+      mass:
+        type: "string"
+      species:
+        type: "string"
+      planet:
+        type: "string"
+    xml:
+      name: "Student"
+  Student_Error:
+    type: "object"
+    properties:
+      message:
+        type: "string"
+        description: "No Jedi Students found"
+    xml:
+      name: "Student_Error"

@@ -1,0 +1,34 @@
+﻿@model JediAcademy.Presentation.ViewModels.ExistingStudentsViewModel
+
+@{
+    ViewData["Title"] = "Existing Students";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Height</th>
+            <th scope="col">Mass</th>
+            <th scope="col">Species</th>
+            <!--Edited by CPang 2020-07-17 Challenge 3-->
+            <th scope="col">Planet</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var jediStudent in @Model.JediStudents)
+        {
+        <tr>
+            <td>@jediStudent.Name</td>
+            <td>@jediStudent.Height</td>
+            <td>@jediStudent.Mass</td>
+            <!--Edited by CPang 2020-07-15 Challenge 1-->
+            <td>@Model.Species.Single(s => s.Id == jediStudent.Species).Name</td>
+            <!--Edited by CPang 2020-07-17 Challenge 3-->
+            <td>@Model.Planets.Single(p => p.Id == jediStudent.Planet).Name</td>
+        </tr>
+        }
+    </tbody>
+</table>

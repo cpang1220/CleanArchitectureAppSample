@@ -1,0 +1,36 @@
+version: 2.1
+
+orbs:
+  windows: circleci/windows@2.2.0
+
+jobs:
+  test:
+    executor:
+      name: windows/default
+    steps:
+      - checkout
+      - run:
+          name: "Install project dependencies"
+          command: dotnet.exe restore "BsuTest.sln"
+      - run:
+          name: "Run Application Tests"
+          command: dotnet.exe test "UnitTest/UnitTestProject/UnitTestProject.csproj" -v n --results-directory:test_coverage --collect:"Code Coverage"
+      - store_test_results:
+          path: C:\Users\circleci\project\test_coverage
+      - store_artifacts:
+          path: C:\Users\circleci\project\test_coverage
+  build:
+    executor:
+      name: windows/default
+    steps:
+      - checkout
+      - run:
+          name: "Build Application"
+          command: dotnet.exe build "BsuTest.sln"
+workflows:
+  build-and-test:
+    jobs:
+      - test
+      - build:
+          requires:
+            - test

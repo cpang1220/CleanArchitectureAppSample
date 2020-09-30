@@ -1,0 +1,76 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Data API"
+tags:
+- name: "data"
+  description: ""
+schemes:
+- "https"
+- "http"
+paths:
+  /api/data/species:
+    get:
+      tags:
+      - "data"
+      description: "Returns all the species of origin data for the student record"
+      operationId: "getSpecies"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Species"
+  /api/data/planets:
+    get:
+      tags:
+      - "data"
+      description: "Returns all the planets of origin data for the student record"
+      operationId: "getPlanets"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Planets"
+
+definitions:
+  Species:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+      classification:
+        type: "string"
+      average_height:
+        type: "string"
+      skin_colors:
+        type: "string"
+      hair_colors:
+        type: "string"
+      eye_colors:
+        type: "string"
+      average_lifespan:
+        type: "string"
+      language:
+        type: "string"
+    xml:
+      name: "Species"
+  Planets:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+      name:
+        type: "string"
+    xml:
+      name: "Planets"

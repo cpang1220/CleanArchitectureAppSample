@@ -1,0 +1,56 @@
+version: '3.4'
+
+services:
+  jediacademy.back.api:
+    image: ${DOCKER_REGISTRY-}jediacademybackapi
+    container_name: jediacademyapi
+    build:
+      context: .
+      dockerfile: JediAcademyBack/JediAcademy.Back.Api/Dockerfile
+    ports:
+        - "54012:80"
+        - "44306:443"
+    networks:
+        - application-network
+
+  starwars.api:
+    image: ${DOCKER_REGISTRY-}starwarsapi
+    container_name: starwarsapi
+    build:
+      context: .
+      dockerfile: StarWars.Api/Dockerfile
+    ports:
+        - "53123:80"
+        - "44366:443"
+    networks:
+        - application-network
+
+  jediacademy.presentation:
+    image: ${DOCKER_REGISTRY-}jediacademypresentation
+    container_name: jediacademyweb
+    build:
+      context: .
+      dockerfile: JediAcademyFront/JediAcademy.Presentation/Dockerfile
+    ports:
+        - "65237:80"
+        - "44335:443"
+    networks:
+        - application-network
+  unittestproject:
+    image: ${DOCKER_REGISTRY-}unittestproject
+    container_name: unittest
+    build:
+      context: .
+      dockerfile: UnitTest/UnitTestProject/Dockerfile
+    ports:
+        - "58017:80"
+        - "44369:443"
+    command:
+      - /bin/bash
+      - UnitTest/UnitTestProject/run-tests.sh
+    networks:
+        - application-network
+
+networks:
+    application-network:
+        driver: bridge

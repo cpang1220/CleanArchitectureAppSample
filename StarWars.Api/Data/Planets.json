@@ -1,0 +1,42 @@
+[
+  {
+    "Id": "0",
+    "name": "Tatooine"
+  },
+  {
+    "Id": "1",
+    "name": "Alderaan"
+  },
+  {
+    "Id": "2",
+    "name": "Yavin IV"
+  },
+  {
+    "Id": "3",
+    "name": "Hoth"
+  },
+  {
+    "Id": "4",
+    "name": "Dagobah"
+  },
+  {
+    "Id": "5",
+    "name": "Bespin"
+  },
+  {
+    "Id": "6",
+    "name": "Endor"
+  },
+  {
+    "Id": "7",
+    "name": "Naboo"
+  },
+  {
+    "Id": "8",
+    "name": "Coruscant"
+  },
+  {
+    "Id": "9",
+    "name": "Kamino"
+  }
+]

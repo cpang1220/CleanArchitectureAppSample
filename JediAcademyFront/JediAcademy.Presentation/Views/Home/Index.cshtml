@@ -1,0 +1,50 @@
+﻿@model JediAcademy.Presentation.ViewModels.JediEnrollmentViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!--Edited by CPang 2020-07-15 Challenge 2-->
+<h1>Enroll new Jedi</h1>
+<div class="card card-body bg-light">
+    @using (Html.BeginForm())
+    {
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                @Html.LabelFor(model => model.Name, "Name")
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Height, "Height")
+                @Html.EditorFor(model => model.Height, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.Height, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.Mass, "Mass")
+                @Html.EditorFor(model => model.Mass, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+                @Html.ValidationMessageFor(model => model.Mass, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.SelectedSpecies, "Species")
+                @Html.DropDownListFor(model => model.SelectedSpecies, Model.Species, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedSpecies, "", new { @class = "text-danger" })
+            </div>
+            <!--Edited by CPang 2020-07-17 Challenge 3-->
+            <div class="form-group col-md-4">
+                @Html.LabelFor(model => model.SelectedPlanet, "Planet")
+                @Html.DropDownListFor(model => model.SelectedPlanet, Model.Planet, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectedPlanet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Enroll</button>
+    }
+</div>
+@if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+        alert("@TempData["Message"]");
+    </script>
+}
